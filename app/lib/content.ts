@@ -172,6 +172,10 @@ export const ACHIEVEMENTS: Achievement[] = [
     title: "HK Jockey Club Chairman's Scholarship",
     body: "Awarded to the top 15 students across Hong Kong.",
   },
+  {
+    title: "USA Computing Olympiad Silver",
+    body: "Awarded as recognition for competitive programming abilities.",
+  },
 ];
 
 /**
