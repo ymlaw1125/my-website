@@ -86,7 +86,7 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/ymlaw1125/ptc-queue",
     live: null,
     year: "2024–25",
-    image: null, // TODO: add /public/projects/ptc-queue.png
+    image: "/projects/ptc-queue.png",
   },
   {
     title: "SHSID Times Website",
@@ -99,7 +99,7 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/ymlaw1125/TimesWebsite",
     live: null,
     year: "2024",
-    image: null, // TODO: add /public/projects/timeswebsite.png
+    image: "/projects/timeswebsite.png", 
   },
   {
     title: "SHSID Navigator",
@@ -111,7 +111,7 @@ export const PROJECTS: Project[] = [
     github: "https://github.com/ymlaw1125/SHSID-Navigation",
     live: null,
     year: "2023",
-    image: null, // TODO: add /public/projects/shsid-navigator.png
+    image: "/projects/shsid-navigator.png", 
   },
 ];
 

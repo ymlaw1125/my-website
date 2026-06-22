@@ -19,7 +19,13 @@ function ExternalIcon() {
   );
 }
 
-/** Visual: project screenshot if present, otherwise a branded monogram panel. */
+/**
+ * Visual: project screenshot presented as a framed product shot, or a branded
+ * monogram panel when no image is set. The screenshot is *contained* (never
+ * cropped) and padded off the edges, with a drop-shadow that traces the image
+ * itself — so portrait (mobile) and landscape (web) captures both read as
+ * intentional showcases rather than raw, edge-bleeding screenshots.
+ */
 function Thumb({ project }: { project: Project }) {
   return (
     <div
@@ -29,27 +35,42 @@ function Thumb({ project }: { project: Project }) {
         height: "100%",
         minHeight: 200,
         background:
-          "linear-gradient(135deg, rgba(106,169,255,0.12), rgba(154,140,255,0.1))",
+          "radial-gradient(120% 120% at 50% 0%, rgba(106,169,255,0.10), transparent 60%), var(--bg)",
         overflow: "hidden",
       }}
     >
+      {/* Subtle grid texture behind the shot */}
+      <span
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+          opacity: 0.4,
+          maskImage: "radial-gradient(70% 70% at 50% 40%, #000, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(70% 70% at 50% 40%, #000, transparent 80%)",
+        }}
+      />
+
       {project.image ? (
-        <Image
-          src={project.image}
-          alt={`${project.title} screenshot`}
-          fill
-          sizes="(max-width: 768px) 100vw, 600px"
-          style={{ objectFit: "cover" }}
-        />
+        <div style={{ position: "absolute", inset: "clamp(1.1rem, 5%, 2.5rem)" }}>
+          <Image
+            src={project.image}
+            alt={`${project.title} screenshot`}
+            fill
+            sizes="(max-width: 768px) 100vw, 600px"
+            style={{
+              objectFit: "contain",
+              objectPosition: "center top",
+              borderRadius: 10,
+              filter: "drop-shadow(0 18px 36px rgba(0,0,0,0.55))",
+            }}
+          />
+        </div>
       ) : (
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "grid",
-            placeItems: "center",
-          }}
-        >
+        <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center" }}>
           <span
             className="display"
             style={{ fontSize: "clamp(3rem, 8vw, 6rem)", color: "rgba(255,255,255,0.08)" }}
